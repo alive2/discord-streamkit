@@ -1,4 +1,5 @@
 import fetch from 'electron-fetch'
+import { spawn } from 'child_process'
 
 export async function handleDiscordMessage(message: string) {
   console.log('handleDiscordMessage', message)
@@ -24,6 +25,12 @@ export async function handleDiscordMessage(message: string) {
         if (res.status < 200 || res.status >= 300) {
           throw new Error(`Failed to change camera: ${res.status}`)
         }
+        break
+      }
+      case '!launch-chrome': {
+        spawn(
+          'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+        )
         break
       }
     }
